@@ -24,6 +24,7 @@
     <input type="number" id="num2" placeholder="Enter second number"><br><br>
     <button onclick="calculate()">Calculate</button><br><br>
     <p id="result"></p>
+    <p id="ip"></p>
 </div>
 
 <script>
@@ -33,6 +34,16 @@ function calculate() {
     var result = "Hello World"; // Hasil selalu "Hello World" tanpa memperhatikan input
     
     document.getElementById('result').innerHTML = result;
+    
+    // Mengambil IP pengguna
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('ip').innerHTML = "Your IP: " + data.ip;
+        })
+        .catch(error => {
+            console.error('Error fetching IP:', error);
+        });
 }
 </script>
 
